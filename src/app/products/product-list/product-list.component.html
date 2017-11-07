@@ -1,0 +1,48 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		{{pageTitle}}
+	</div>
+	<div class="panel-body">
+		<div class="panel-filter">
+			<div class="row">
+				<div class="col-md-2">
+					Filtered By :
+					<input type="text" [(ngModel)]="listeFilter">
+				</div>
+			</div>
+		</div>
+
+		<button class="btn btn-primary" (click)="toggleImage()">
+			{{showImage? "Hide":"Show"}} Image
+		</button>
+		<div id="current-filtered" *ngIf="listeFilter">
+			Filtered By : {{listeFilter}}
+		</div>
+
+		<div class="table-responsive">
+			<table class="table" *ngIf="filteredProducts && filteredProducts.length">
+				<thead>
+					<tr>
+						<th class="left-border-radius"></th>
+						<th>Product</th>
+						<th>Code</th>
+						<th>Available</th>
+						<th class="right-border-radius">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let product of filteredProducts">
+						<td>
+							<img *ngIf="showImage" [src]="product.imageUrl" [title]="product.productName"
+							[style.width.px]='imageWidth' [style.margin.px]='imageMargin'/>
+						</td>
+						<td>{{product.productName}}</td>
+						<td>{{product.productCode}}</td>
+						<td>{{product.releaseDate}}</td>
+						<td>{{product.price}}</td>						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
